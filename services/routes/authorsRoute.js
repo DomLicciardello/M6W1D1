@@ -1,18 +1,20 @@
 import { Router } from "express";
-import User from "../models/user.model.js";
+import User from "../models/authorsModel.js";
 
-export const apiRoute = Router();
+export const authorsRoute = Router();
 
-apiRoute.get("/", async (req, res) => {
-  res.send("Sei al route principale dell'API!");
+// Chiama tutto l'array di oggetti:
+authorsRoute.get("/", async (req, res) => {
+  try {
+    let users =  await User.find()
+    res.send(users);
+  } catch (err) {
+    next(err);
+  }
 });
 
-/* apiRoute.get("/prova", async (req, res) => {
-  res.send("Sei al route di prova dell'API!");
-}); */
-
 // Chiamata ad un oggetto specifico tramite id:
-apiRoute.get("/:id", async (req, res, next) => {
+authorsRoute.get("/:id", async (req, res, next) => {
   try {
     let user =  await User.findById(req.params.id)
     res.send(user);
@@ -22,7 +24,7 @@ apiRoute.get("/:id", async (req, res, next) => {
 });
 
 // Aggiunta di un oggetto al server:
-apiRoute.post("/", async (req, res, next) => {
+authorsRoute.post("/", async (req, res, next) => {
   try {
     let user = await User.create(req.body);
     res.send(user).status(400);
@@ -32,7 +34,7 @@ apiRoute.post("/", async (req, res, next) => {
 });
 
 // Modifica di un oggetto del server:
-apiRoute.put("/:id", async (req, res, next) => {
+authorsRoute.put("/:id", async (req, res, next) => {
   try {
     let user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true // L'oggetto deve essere la nuova versione aggiornata di se stesso.
@@ -44,7 +46,7 @@ apiRoute.put("/:id", async (req, res, next) => {
 });
 
 // Elimina un oggetto dal server:
-apiRoute.delete("/:id", async (req, res, next) => {
+authorsRoute.delete("/:id", async (req, res, next) => {
   try {
     await User.deleteOne({
       _id: req.params.id

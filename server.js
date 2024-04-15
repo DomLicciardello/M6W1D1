@@ -1,10 +1,10 @@
 import express from "express";
 import { config } from "dotenv";
 import mongoose from "mongoose";
-import { apiRoute } from "./services/routes/api.route.js";
+import { authorsRoute } from "./services/routes/authorsRoute.js";
 
 // Tutti i file .env saranno legibilli all'interno dell' applicazione.
-config(); 
+config();
 const PORT = process.env.PORT || 3001;
 // Utilizzo la porta 3001 perché il server react (lato frontend) lavora sulla porta 3000.
 
@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 
 // Importo le routes:
-app.use("/api", apiRoute);
+app.use("/authors", authorsRoute);
 
 const initServer = async () => {
     try {
