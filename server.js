@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import { authorsRoute } from "./services/routes/authorsRoute.js";
+import { blogPostRoute } from "./services/routes/blogPostRoute.js";
 
 // Tutti i file .env saranno legibilli all'interno dell' applicazione.
 config();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Importo le routes:
 app.use("/authors", authorsRoute);
+app.use("/blogpost", blogPostRoute)
 
 const initServer = async () => {
     try {
