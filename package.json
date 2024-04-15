@@ -1,15 +1,17 @@
 {
-  "name": "m6w1d1",
+  "name": "modulo6epicode",
   "version": "1.0.0",
   "description": "blog",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "nodemon server.js"
+    "start": "nodemon server.js"
   },
-  "author": "dom",
+  "author": "domenico",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.3.1",

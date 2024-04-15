@@ -1,0 +1,15 @@
+.blog-cover {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: 0% 0%;
+}
+
+.blog-card {
+  height: 100%;
+}
+
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+}

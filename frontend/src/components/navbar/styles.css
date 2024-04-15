@@ -1,0 +1,20 @@
+.blog-navbar-brand {
+  width: 180px;
+}
+
+.blog-navbar {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
+  -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
+  -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
+  box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
+}
+
+.blog-navbar-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+  text-decoration: none;
+}
