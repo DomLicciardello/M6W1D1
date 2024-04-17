@@ -6,7 +6,7 @@ import "./styles.css";
 const Home = props => {
   return (
     <Container fluid="sm">
-      <h1 className="blog-main-title mb-3">Benvenuto sullo Strive Blog!</h1>
+      <h1 className="blog-main-title mb-3">Le opinioni del Tifoso:</h1>
       <BlogList />
     </Container>
   );

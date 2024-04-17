@@ -5,11 +5,16 @@ const Footer = (props) => {
   return (
     <footer
       style={{
-        paddingTop: 50,
-        paddingBottom: 50,
+        paddingTop: 35,
+        paddingBottom: 35,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        boxShadow: "rgba(222, 222, 222, 1) 2px -2px 4px -1px",
+        marginTop: 30,
       }}
     >
-      <Container>{`${new Date().getFullYear()} - © Strive School | Developed for homework projects.`}</Container>
+      {`${new Date().getFullYear()} - © Licciardello - Epicode M6`}
     </footer>
   );
 };

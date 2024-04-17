@@ -17,21 +17,20 @@ const NewBlogPost = props => {
     <Container className="new-blog-container">
       <Form className="mt-5">
         <Form.Group controlId="blog-form" className="mt-3">
-          <Form.Label>Titolo</Form.Label>
-          <Form.Control size="lg" placeholder="Title" />
+          <Form.Label>Titolo:</Form.Label>
+          <Form.Control size="lg" placeholder="Scrivi il titolo..." />
         </Form.Group>
         <Form.Group controlId="blog-category" className="mt-3">
-          <Form.Label>Categoria</Form.Label>
+          <Form.Label>Categoria:</Form.Label>
           <Form.Control size="lg" as="select">
-            <option>Categoria 1</option>
-            <option>Categoria 2</option>
-            <option>Categoria 3</option>
-            <option>Categoria 4</option>
-            <option>Categoria 5</option>
+            <option>Inter</option>
+            <option>Juve</option>
+            <option>Milan</option>
+            <option>Napoli</option>
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
-          <Form.Label>Contenuto Blog</Form.Label>
+          <Form.Label>La tua opinione da Tifoso:</Form.Label>
 
           <Editor value={text} onChange={handleChange} className="new-blog-content" />
         </Form.Group>
