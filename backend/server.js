@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import { authorsRoute } from "./services/routes/authorsRoute.js";
 import { blogPostRoute } from "./services/routes/blogPostRoute.js";
+import logger from "./services/middlewares/logger.js";
 
 // Tutti i file .env saranno legibilli all'interno dell' applicazione.
 config();
@@ -12,12 +13,15 @@ const PORT = process.env.PORT || 3001;
 // Creo il server:
 const app = express();
 
-// Abilito comunicazione con dati JSON:
+// Middleware di terze parti: abilita comunicazione con dati JSON.
 app.use(express.json());
 
+// Middleware: logger richieste http, va messa prima delle routes.
+app.use(logger);
+
 // Importo le routes:
-app.use("/authors", authorsRoute);
-app.use("/blogpost", blogPostRoute)
+app.use("/authors", authorsRoute); //aggiungendo ,logger nella parentesi (tra "/authors" e authorsRoute) usiamo il middlewear solo in quella singola route.
+app.use("/blogpost", blogPostRoute);
 
 const initServer = async () => {
     try {
