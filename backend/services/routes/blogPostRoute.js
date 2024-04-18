@@ -3,7 +3,7 @@ import BlogPost from "../models/blogPostModel.js";
 
 export const blogPostRoute = Router();
 
-// Chiama tutto l'array di oggetti:
+// Chiama tutto l'array di oggetti col find vuoto:
 blogPostRoute.get("/", async (req, res) => {
   try {
     let blogposts =  await BlogPost.find()
@@ -12,6 +12,34 @@ blogPostRoute.get("/", async (req, res) => {
     next(err);
   }
 });
+
+// Chiama gli oggetti in ordine alfabetico/numerico grazie a "sort", in base all'elemento dell'oggetto dichiarato (title in questo caso):
+blogPostRoute.get("/sorting", async (req, res, next) => {
+  try {
+    let blogposts = await BlogPost.find().sort({
+      title: 1, //1 in maniera crescente e -1 in maniera decrescente
+    })
+    //.skip(2); -> skip serve per saltare i risultati, in questo caso i primi due.
+    //.limit(1); -> limit serve a limitare i risultati, in questo caso mostra solo il primo.;
+    res.send(blogposts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* // Oppure pagination con parametro order diretammente nell'url:
+blogPostRoute.get("/sorting/:order", async (req, res, next) => {
+  let orderParam = parseInt(req.params.order);
+
+  try {
+    let blogposts = await BlogPost.find().sort({
+      title: orderParam !== -1 && orderParam !== 1 ? 1 : orderParam, 
+    });
+    res.send(blogposts);
+  } catch (err) {
+    next(err);
+  }
+}); */
 
 // Chiamata ad un oggetto specifico tramite id:
 blogPostRoute.get("/:id", async (req, res, next) => {
