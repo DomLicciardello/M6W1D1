@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import { authorsRoute } from "./services/routes/authorsRoute.js";
 import { blogPostRoute } from "./services/routes/blogPostRoute.js";
 import logger from "./services/middlewares/logger.js";
+import { badRequestHandler, genericErrorHandle, notFoundHandler, unathorizedHandler } from "./services/middlewares/errorHandler.js";
+//import nodemailer from "nodemailer";
 
 // Tutti i file .env saranno legibilli all'interno dell' applicazione.
 config();
@@ -23,6 +25,19 @@ app.use(logger);
 app.use("/authors", authorsRoute); //aggiungendo ,logger nella parentesi (tra "/authors" e authorsRoute) usiamo il middlewear solo in quella singola route.
 app.use("/blogpost", blogPostRoute);
 
+// Collegamento Middleware 404 Route:
+app.get("/*", function(req, res, next) {
+    const error = new Error("404 Not Found!");
+    error.status = 404;
+    next(error);
+});
+
+// Middleware: gestione errore da posizionare dopo le route:
+app.use(unathorizedHandler);
+app.use(badRequestHandler);
+app.use(notFoundHandler);
+app.use(genericErrorHandle); // Gestore errore generico va messo sempre per ultimo.
+
 const initServer = async () => {
     try {
         // Accesso al database, prima di avviare il server:
@@ -41,5 +56,19 @@ const initServer = async () => {
 
 initServer();
 
-// node server.js -> scrivere questo sul terminale per avviare il server.
-// Andando (lato browser) su localhost:3001 troviamo il server.
+// Funzione per inviare mail:
+/* const sendEmail = async () => {
+    nodemailer.createTransport({
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+            user: process.env.SMTP_MAIL_USERNAME,
+            pass: process.env.SMTP_MAIL_PASSWORD,
+},
+    });
+
+    const mail = await transporter.sendMail({
+        from: "Epicode Tester <stephon"
+    })
+
+}; */
