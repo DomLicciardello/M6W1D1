@@ -5,7 +5,7 @@ import { authorsRoute } from "./services/routes/authorsRoute.js";
 import { blogPostRoute } from "./services/routes/blogPostRoute.js";
 import logger from "./services/middlewares/logger.js";
 import { badRequestHandler, genericErrorHandle, notFoundHandler, unathorizedHandler } from "./services/middlewares/errorHandler.js";
-//import nodemailer from "nodemailer";
+import nodemailer from "nodemailer";
 
 // Tutti i file .env saranno legibilli all'interno dell' applicazione.
 config();
@@ -57,8 +57,8 @@ const initServer = async () => {
 initServer();
 
 // Funzione per inviare mail:
-/* const sendEmail = async () => {
-    nodemailer.createTransport({
+const sendEmail = async () => {
+    const transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
@@ -67,8 +67,29 @@ initServer();
 },
     });
 
-    const mail = await transporter.sendMail({
-        from: "Epicode Tester <stephon"
-    })
+    const mailBody = `
+    <div>
+    <h1>Ciao da Epicode!</h1>
+    <h4>Partecipa al nuovo corso!</h4>
+    </div>`;
 
-}; */
+    try {
+        const mail = await transporter.sendMail({
+            from: "Epicode Tester <david.kshlerin60@ethereal.email>",
+            to: "test@gmail.com",
+            subject: "Epicode Testing",
+            html: mailBody,
+/*             // Per aggiungere un allegato:
+            attachments: [{
+                filename: "epicode.jpg",
+                path: "./percorso_file.jpg",
+            }], */
+        });
+    
+        console.log(mail.messageId);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// sendEmail(); // -> evoco la funzione per spedire la mail.
