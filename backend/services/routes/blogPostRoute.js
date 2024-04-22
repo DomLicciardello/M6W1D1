@@ -1,5 +1,6 @@
 import { Router } from "express";
 import BlogPost from "../models/blogPostModel.js";
+import uploadCover from "../middlewares/multercover.js";
 
 export const blogPostRoute = Router();
 
@@ -82,5 +83,19 @@ blogPostRoute.delete("/:id", async (req, res, next) => {
     res.send("Utente eliminato dal database con successo!").status(204);
   } catch (err) {
     next(err);
+  }
+});
+
+// Richiesta PATCH per aggiornare immagini di un utente già esistente:
+blogPostRoute.patch("/:id/cover", uploadCover, async(req, res, next) => {
+  try {
+    let updateBlogPost = await BlogPost.findByIdAndUpdate(
+      req.params.id,
+      {cover: req.file.path},
+      {new: true}
+    );
+    res.send(updateBlogPost);
+  } catch (error) {
+    next(error);
   }
 });

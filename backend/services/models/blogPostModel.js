@@ -12,7 +12,7 @@ const blogPostSchema = new Schema(
         },
         cover: {
             type: String,
-            required: true,
+            required: false,
         },
         readTime: {
             value: {
