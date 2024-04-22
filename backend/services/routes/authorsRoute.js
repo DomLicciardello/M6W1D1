@@ -1,5 +1,6 @@
 import { Router } from "express";
 import User from "../models/authorsModel.js";
+import cloudinaryMiddleware from "../middlewares/multer.js";
 
 export const authorsRoute = Router();
 
@@ -110,5 +111,19 @@ authorsRoute.delete("/:id", async (req, res, next) => {
     res.send("Utente eliminato dal database con successo!").status(204);
   } catch (err) {
     next(err);
+  }
+});
+
+// Richiesta PATCH per aggiornare immagini di un utente già esistente:
+authorsRoute.patch("/:id/avatar", cloudinaryMiddleware, async(req, res, next) => {
+  try {
+    let updateAuthor = await User.findByIdAndUpdate(
+      req.params.id,
+      {avatar: req.file.path},
+      {new: true}
+    );
+    res.send(updateAuthor);
+  } catch (error) {
+    next(error);
   }
 });
