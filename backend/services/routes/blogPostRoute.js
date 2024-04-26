@@ -1,6 +1,7 @@
 import { Router } from "express";
 import BlogPost from "../models/blogPostModel.js";
 import uploadCover from "../middlewares/multercover.js";
+import sendEmail from "../sendEmail.js"
 
 export const blogPostRoute = Router();
 
@@ -56,6 +57,7 @@ blogPostRoute.get("/:id", async (req, res, next) => {
 blogPostRoute.post("/", async (req, res, next) => {
   try {
     let blogpost = await BlogPost.create(req.body);
+    sendEmail("test@gmail.com", '<h1>Email di prova!</h1>');
     res.send(blogpost).status(400);
   } catch (err) {
     next(err);
