@@ -42,7 +42,7 @@ commentsRoute.get("/:id/comments", async (req, res) => {
   });
 
 /*   // Modifica di un oggetto del server:
-blogPostRoute.put("/:id", async (req, res, next) => {
+  commentsRoute.put("/:id/comment/:commentId", async (req, res, next) => {
     try {
       let blogpost = await BlogPost.findByIdAndUpdate(req.params.id, req.body, {
         new: true // L'oggetto deve essere la nuova versione aggiornata di se stesso.
@@ -54,7 +54,7 @@ blogPostRoute.put("/:id", async (req, res, next) => {
   });
   
   // Elimina un oggetto dal server:
-  blogPostRoute.delete("/:id", async (req, res, next) => {
+  commentsRoute.delete("/:id/comment/:commentId", async (req, res, next) => {
     try {
       await BlogPost.deleteOne({
         _id: req.params.id
