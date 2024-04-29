@@ -1,7 +1,7 @@
 import { Router } from "express";
 import User from "../models/authorsModel.js";
 import uploadAvatar from "../middlewares/multeravatar.js";
-import sendEmail from "../sendEmail.js"
+//import sendEmail from "../sendEmail.js"
 
 export const authorsRoute = Router();
 
@@ -85,7 +85,7 @@ authorsRoute.get("/:id", async (req, res, next) => {
 authorsRoute.post("/", async (req, res, next) => {
   try {
     let user = await User.create(req.body);
-    sendEmail("test@gmail.com", '<h1>Email di prova!</h1>');
+    //sendEmail("test@gmail.com", '<h1>Email di prova!</h1>');
     res.send(user).status(400);
   } catch (err) {
     next(err);

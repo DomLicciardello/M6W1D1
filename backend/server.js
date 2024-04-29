@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import { authorsRoute } from "./services/routes/authorsRoute.js";
 import { blogPostRoute } from "./services/routes/blogPostRoute.js";
+import { commentsRoute } from "./services/routes/commentsRoute.js";
 import logger from "./services/middlewares/logger.js";
 import { badRequestHandler, genericErrorHandle, notFoundHandler, unathorizedHandler } from "./services/middlewares/errorHandler.js";
 
@@ -23,6 +24,7 @@ app.use(logger);
 // Importo le routes:
 app.use("/authors", authorsRoute); //aggiungendo ,logger nella parentesi (tra "/authors" e authorsRoute) usiamo il middlewear solo in quella singola route.
 app.use("/blogpost", blogPostRoute);
+app.use("/blogpost", commentsRoute);
 
 // Collegamento Middleware 404 Route:
 app.get("/*", function(req, res, next) {

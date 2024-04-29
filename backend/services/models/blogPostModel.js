@@ -24,16 +24,12 @@ const blogPostSchema = new Schema(
                 required: true
             }
         },
-        author: {
-            name: {
-                type: String,
-                required: true
+        comments : [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Comments"
             },
-            avatar: {
-                type: String,
-                required: true
-            }
-        },
+        ],
         content: {
             type: String,
             required: true
@@ -42,6 +38,7 @@ const blogPostSchema = new Schema(
 
     {
         collection: "blogposts",
+        timestamps: true //per ricevere da MongoDB la data di creazione/modifica
     }
 );
 
