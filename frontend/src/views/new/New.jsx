@@ -18,7 +18,7 @@ const NewBlogPost = props => {
       <Form className="mt-5">
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Titolo:</Form.Label>
-          <Form.Control size="lg" placeholder="Scrivi il titolo..." />
+          <Form.Control size="lg" placeholder="Scrivi qui il titolo dell'articolo..." />
         </Form.Group>
         <Form.Group controlId="blog-category" className="mt-3">
           <Form.Label>Categoria:</Form.Label>
@@ -30,9 +30,9 @@ const NewBlogPost = props => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
-          <Form.Label>La tua opinione da Tifoso:</Form.Label>
+          <Form.Label>Dai voce ai tuoi pensieri:</Form.Label>
 
-          <Editor value={text} onChange={handleChange} className="new-blog-content" />
+          <Editor value={text} onChange={handleChange} className="new-blog-content" placeholder="Scrivi qui il testo dell'articolo..."/>
         </Form.Group>
         <Form.Group className="d-flex mt-3 justify-content-end">
           <Button type="reset" size="lg" variant="outline-dark">

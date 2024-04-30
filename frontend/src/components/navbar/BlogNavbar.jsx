@@ -12,7 +12,7 @@ const NavBar = props => {
         </Navbar.Brand>
 
         <Button as={Link} to="/new" className="blog-navbar-add-button bg-dark" size="lg">
-          + Nuovo Articolo
+          New Post
         </Button>
       </Container>
     </Navbar>
