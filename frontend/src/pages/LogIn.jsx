@@ -10,7 +10,7 @@ export default function LogIn() {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const handleSubmit=(e)=> {
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/authors/login/", {
         method: 'POST',
@@ -23,20 +23,20 @@ export default function LogIn() {
             password: password
         })
     })
-    .then((res)=>{
-        if (res) { 
-          alert('Accesso effettuato!');
-          console.log(res.data)
-          //navigate("/");
-      } else {  
-          alert ("Registrati per effettuare l'accesso!") 
-          navigate("/signin");
-      } 
+    .then((res) => {
+      if (res.ok) {
+        console.log(res);
+        alert("Accesso effettuato!");
+        navigate("/");
+      } else {
+        console.log(res);
+        alert("Errore nell'accesso. Controlla le tue credenziali.");
+      }
     })
-    .catch((err)=>{
-      alert('Accesso fallito! ' + err);
-  })
-};
+    .catch((err) => {
+      alert("Si è verificato un errore! " + err);
+    });
+  };
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function LogIn() {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formGroupEmail">
         <Form.Label>Email</Form.Label>
-        <Form.Control name='email' type="email" placeholder="Email" onChange={(e) => setEmail(e.target.valore)}/>
+        <Form.Control name='email' type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>
