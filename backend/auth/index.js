@@ -5,48 +5,63 @@ import { config } from "dotenv";
 config();
 
 export const generateJWT = (payload) => {
-  return new Promise((res, rej) =>
+  return new Promise((res, rej) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
       { expiresIn: "5 day" },
       (err, token) => {
-        if (err) rej(err)
-        else res(token)
+        if (err) {
+          rej(err);
+        } else {
+          res(token);
+        }
       }
-    )
-  )
-}
+    );
+  });
+};
 
 export const verifyJWT = (token) => {
-  return new Promise((res, rej) =>
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) rej(err)
-      else res(decoded)
-    })
-  )
-}
+  return new Promise((res, rej) => {
+    jwt.verify(
+      token,
+      process.env.JWT_SECRET,
+      (err, decoded) => {
+      if (err) {
+        rej(err);
+      } else {
+        res(decoded);
+      }
+     }
+    );
+  });
+};
 
 export const authMidd = async (req, res, next) => {
   try {
-    if (!req.headers["authorization"]) res.status(401).send("Please login.")
-    else {
+    if (!req.headers.authorization){
+      res.status(400).send("Effettua il login!");
+    } else {
       const decoded = await verifyJWT(
-        req.headers["authorization"].replace("Bearer ", "")
-      )
+        req.headers.authorization.replace("Bearer ", "")
+      );
       if (decoded.exp) {
-        delete decoded.iat
-        delete decoded.exp
+        delete decoded.iat;
+        delete decoded.exp;
         const me = await Author.findOne({
-          ...decoded,
-        })
+          ...decoded
+        });
         if (me) {
           req.user = me
           next()
-        } else res.status(401).send("Author not found.")
-      } else res.status(401).send("Please login again.")
+        } else {
+          res.status(401).send("Utente non");
+        }
+      } else {
+        res.status(401).send("Rieffettua il login!");
+      }
     }
-  } catch (error) {
-    next(error)
+  } catch (err) {
+      next(err);
   }
-}
+};

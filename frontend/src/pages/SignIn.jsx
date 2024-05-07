@@ -79,6 +79,11 @@ export default function SignIn() {
         Registrati
       </Button>
     </Form>
+    <hr></hr>
+    <p>Hai già un account?</p> 
+      <Button variant="dark" type="submit">
+        <a href="http://localhost:3000/login" style={{textDecoration:"none", color:"white"}}>Accedi</a>
+      </Button>
     </div>
     <BlogFooter></BlogFooter>
    </>

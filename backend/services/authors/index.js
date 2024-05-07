@@ -20,24 +20,30 @@ authorRoute.get("/", async (req, res, next) => {
   }
 })
 
-authorRoute.post("/login", async ({ body }, res, next) => {
+authorRoute.post("/login", async (req, res, next) => {
   try {
     let foundUser = await Author.findOne({
-      email: body.email,
-    })
+      email: req.body.email,
+    });
     if (foundUser) {
-      const matching = await bcrypt.compare(body.password, foundUser.password)
-      if (matching) {
+      const PasswordMatching = await bcrypt.compare(
+        req.body.password,
+        foundUser.password);
+      if (PasswordMatching) {
         const token = await generateJWT({
           email: foundUser.email,
-        })
-        res.send({ user: foundUser, token })
-      } else res.status(400).send("Password errata!")
-    } else res.status(400).send("L'utente non esiste!")
-  } catch (error) {
-    next(error)
+        });
+        res.send({ user: foundUser, token });
+      } else {
+        res.status(400).send("Password errata!")
+      }
+    } else {
+      res.status(400).send("L'utente non esiste!")
+    };
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 authorRoute.get("/me", authMidd, async (req, res, next) => {
   try {

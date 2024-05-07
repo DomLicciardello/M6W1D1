@@ -3,7 +3,7 @@ import React from 'react'
 export default function BlogFooter() {
   return (
     <>
-    <div bgColor='light' className='text-center text-lg-left'>
+    <div className='text-center text-lg-left'>
       <div
       className='text-center p-3'
       style={{

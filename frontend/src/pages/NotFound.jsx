@@ -12,6 +12,7 @@ export default function NotFound() {
         <img
         src={logo}
         className='logo-nav'
+        alt='logo'
         /></a>
     </div>
   )
