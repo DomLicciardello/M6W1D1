@@ -9,6 +9,7 @@ export default function BlogHome() {
     <>
     <Container fluid>
       <Row className='home-style'>
+        <h2>Sito in costruzione...</h2>
         <BlogCard></BlogCard>
       </Row>
     </Container>

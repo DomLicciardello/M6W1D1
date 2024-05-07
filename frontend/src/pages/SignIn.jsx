@@ -43,7 +43,7 @@ export default function SignIn() {
     <>
     <BlogNavBar></BlogNavBar>
     <div style={{backgroundColor:"#F4C21B", padding:"30px"}}>
-        <h2 style={{margin:"0px"}}>Entra a far parte di Nerd Blog:</h2>
+        <h2 style={{margin:"0px"}}>Entra a far parte del Nerd Blog:</h2>
         <hr></hr>
     <Form onSubmit={handleSubmit}>
       <Row className="mb-3">
