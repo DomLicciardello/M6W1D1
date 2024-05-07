@@ -7,7 +7,9 @@ export default function Fumetti() {
     <>
     <BlogNavBar></BlogNavBar>
     <div style={{backgroundColor:"#F4C21B", padding:"30px", height:"70vh"}}>
-        <h1 style={{margin:"0px"}}>Fumetti</h1>
+        <h2 style={{margin:"0px"}}>Fumetti</h2>
+        <hr></hr>
+        <h2>Sezione in costruzione...</h2>
     </div>
     <BlogFooter></BlogFooter>
    </>

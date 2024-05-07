@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken"
 import Author from "../services/authors/model.js"
+import { config } from "dotenv";
+
+config();
 
 export const generateJWT = (payload) => {
   return new Promise((res, rej) =>

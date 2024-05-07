@@ -16,6 +16,7 @@ function BlogNavBar() {
             <img
             src={logo}
             className='logo-nav'
+            alt='logo'
             /></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

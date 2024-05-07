@@ -28,6 +28,6 @@ export const badRequestHandler = (err, req, res, next) => {
   export const genericErrorHandler = (err, req, res, next) => {
     console.log("ERROR:", err)
     res.status(500).send({
-      message: "Something happened on our side! we will fix that ASAP!",
+      message: "Ops! C'è stato un problema! Cercheremo di risolverlo al più presto!",
     })
   }

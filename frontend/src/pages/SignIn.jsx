@@ -6,12 +6,14 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [name, setName] = useState();
   const [lastName, setLastName] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit=(e)=> {
     e.preventDefault();
@@ -30,9 +32,10 @@ export default function SignIn() {
     })
     .then(()=>{
         alert('Registrazione avvenuta con successo!');
+        navigate("/login");
     })
     .catch((err)=>{
-      alert('Registrazione fallita!' + err);
+      alert('Registrazione fallita! ' + err);
   })
 };
 

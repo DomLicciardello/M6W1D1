@@ -29,12 +29,11 @@ authorRoute.post("/login", async ({ body }, res, next) => {
       const matching = await bcrypt.compare(body.password, foundUser.password)
       if (matching) {
         const token = await generateJWT({
-          lastName: foundUser.lastName,
           email: foundUser.email,
         })
         res.send({ user: foundUser, token })
-      } else res.status(400).send("Wrong password")
-    } else res.status(400).send("User does not exist.")
+      } else res.status(400).send("Password errata!")
+    } else res.status(400).send("L'utente non esiste!")
   } catch (error) {
     next(error)
   }
