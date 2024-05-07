@@ -22,14 +22,14 @@ const authorSchema = new Schema(
         },
         birthday: {
             type: String,
-            required: true
-
+            required: false
         },
         avatar: {
             type: String,
+            required: false
         }
     },
-    { collection: "author" }
+    { collection: "authors" }
 )
 
 export default model("Author", authorSchema)

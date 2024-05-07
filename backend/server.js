@@ -24,7 +24,7 @@ app.use(genericErrorHandler)
 
 const initServer = async () => {
     try {
-        await mongoose.connect(process.env.DBURL);
+        await mongoose.connect(process.env.DB_URL);
         console.log ("Connesso al database!")
         app.listen(PORT, () => {
         console.log(`Il nostro server sta ascoltando alla porta ${PORT}.`);

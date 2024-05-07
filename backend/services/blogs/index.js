@@ -1,7 +1,7 @@
 import { Router } from "express"
 import Blog from "./model.js"
 import Comment from "../comments/model.js"
-import cloudinary from "../../config/cloudinary.js"
+import multerCover from "../../config/multerCover.js"
 import { authMidd } from "../../auth/index.js"
 
 export const blogRoute = Router()
@@ -51,7 +51,7 @@ blogRoute.put("/:id", async (req, res, next) => {
   }
 })
 
-blogRoute.patch("/:id/cover", cloudinary, async (req, res, next) => {
+blogRoute.patch("/:id/cover", multerCover, async (req, res, next) => {
   try {
     let blog = await Blog.findByIdAndUpdate(
       req.params.id,

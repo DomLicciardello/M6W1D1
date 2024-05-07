@@ -2,7 +2,7 @@ import { Router } from "express"
 import Author from "./model.js"
 import bcrypt from "bcryptjs"
 import Blog from "../blogs/model.js"
-import cloudinary from "../../config/cloudinary.js"
+import multerAvatar from "../../config/multerAvatar.js"
 import "dotenv/config"
 import { authMidd, generateJWT } from "../../auth/index.js"
 
@@ -71,7 +71,7 @@ authorRoute.get("/:id/blogPosts", async (req, res, next) => {
   }
 })
 
-authorRoute.patch("/:id/avatar", cloudinary, async (req, res, next) => {
+authorRoute.patch("/:id/avatar", multerAvatar, async (req, res, next) => {
   try {
     let author = await Author.findByIdAndUpdate(
       req.params.id,
