@@ -1,22 +1,31 @@
-import React from "react";
-import NavBar from "./components/navbar/BlogNavbar";
-import Footer from "./components/footer/Footer";
-import Home from "./views/home/Home";
-import Blog from "./views/blog/Blog";
-import NewBlogPost from "./views/new/New";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Cinema from "./pages/Cinema";
+import NotFound from "./pages/NotFound";
+import Fumetti from "./pages/Fumetti"
+import Videogiochi from "./pages/Videogiochi"
+import LogIn from "./pages/LogIn"
+import SignIn from "./pages/SignIn"
+import CardDetails from "./pages/CardDetails";
 
 function App() {
   return (
-    <Router>
-      <NavBar />
+    <>
+     <BrowserRouter>
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/blog/:id" element={<Blog />} />
-        <Route path="/new" element={<NewBlogPost />} />
+        <Route exact path="/" element={<HomePage/>}/>
+        <Route exact path="/cinema" element={<Cinema/>}/>
+        <Route exact path="/fumetti" element={<Fumetti/>}/>
+        <Route exact path="/videogiochi" element={<Videogiochi/>}/>
+        <Route exact path="/login" element={<LogIn/>}/>
+        <Route exact path="/signin" element={<SignIn/>}/>
+        <Route exact path="/post/:id" element={<CardDetails/>}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
-      <Footer />
-    </Router>
+     </BrowserRouter>
+    </>
   );
 }
 

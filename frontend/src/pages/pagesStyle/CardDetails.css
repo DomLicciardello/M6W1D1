@@ -1,0 +1,10 @@
+.detail-cover-style {
+    height: 400px;
+    width: auto;
+    object-fit: cover;
+}
+
+#detail-title {
+    text-align: center;
+    font-size: 40px;
+}

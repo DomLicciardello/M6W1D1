@@ -1,0 +1,31 @@
+#nav-style {
+    padding: 0px;
+    border-bottom: 1px solid black;
+}
+
+.logo-nav {
+    height: 100px;
+}
+
+.nav-link-style {
+    font-size: 18px !important;
+    color: black;
+    padding: 0px;
+    margin: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-link-style p {
+    margin: 0px;
+}
+
+.nav-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px 5px;
+}

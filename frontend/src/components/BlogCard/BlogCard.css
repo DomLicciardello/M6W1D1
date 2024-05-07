@@ -1,0 +1,9 @@
+.card-style {
+    height: 330px;
+}
+
+.card-cover-style {
+    object-fit: cover;
+    min-height: 200px;
+    max-height: 200px;
+}
