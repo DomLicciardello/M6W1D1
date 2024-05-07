@@ -9,7 +9,7 @@ export default function LogIn() {
     <>
     <BlogNavBar></BlogNavBar>
     <div style={{backgroundColor:"#F4C21B", padding:"30px"}}>
-        <h2 style={{margin:"0px"}}>Bentornato su Nerd Blog:</h2>
+        <h2 style={{margin:"0px"}}>Benvenuto su Nerd Blog:</h2>
         <hr></hr>
     <Form>
       <Form.Group className="mb-3" controlId="formGroupEmail">
