@@ -1,9 +1,5 @@
 import React from 'react'
 import BlogNavBar from '../components/BlogNavBar/BlogNavBar';
-import Row from 'react-bootstrap/esm/Row';
-import { Form } from 'react-router-dom';
-import Col from 'react-bootstrap/esm/Col';
-import Button from 'react-bootstrap/esm/Button';
 import BlogFooter from '../components/BlogFooter/BlogFooter';
 
 export default function NewPost() {

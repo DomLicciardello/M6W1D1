@@ -144,13 +144,6 @@ blogRoute.delete("/:id", async (req, res, next) => {
 blogRoute.post("/", authMidd, async (req, res, next) => {
   try {
     let blog = await Blog.create({...req.body, author: req.user._id})
-/*     const msg = {
-      to: req.body.email, // Change to your recipient
-      from: "...", // Change to your verified sender
-      subject: "Il tuo articolo su Nerd Blog!",
-      html: `Grazie, hai pubblicato con successo l'articolo "${req.body.title}" su Nerd Blog!`,
-    }
-    await sgMail.send(msg) */
     res.send(blog)
   } catch (error) {
     next(error)

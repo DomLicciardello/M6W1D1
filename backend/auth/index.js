@@ -9,7 +9,7 @@ export const generateJWT = (payload) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "5 day" },
+      { expiresIn: "7 day" },
       (err, token) => {
         if (err) {
           rej(err);
@@ -55,7 +55,7 @@ export const authMidd = async (req, res, next) => {
           req.user = me
           next()
         } else {
-          res.status(401).send("Utente non");
+          res.status(401).send("Utente non trovato!");
         }
       } else {
         res.status(401).send("Rieffettua il login!");

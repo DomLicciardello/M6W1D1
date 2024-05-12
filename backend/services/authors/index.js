@@ -119,13 +119,6 @@ authorRoute.post("/", async (req, res, next) => {
       ...req.body,
       password: await bcrypt.hash(req.body.password, 10),
     })
-/*     const msg = {
-      to: req.body.email, // Change to your recipient
-      from: "...", // Change to your verified sender
-      subject: "Benvenuto su Nerd Blog",
-      html: `Hai creato un account su Nerd Blog`,
-    }
-    await sgMail.send(msg) */
     res.send(author)
   } catch (error) {
     next(error)
