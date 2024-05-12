@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import BlogNavBar from "../components/BlogNavBar/BlogNavBar";
 import BlogFooter from "../components/BlogFooter/BlogFooter";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import logo from "../assets/logo.png"
 
 export default function LogIn() {
   const [email, setEmail] = useState();
@@ -25,13 +25,17 @@ export default function LogIn() {
     })
     .then((res) => {
       if (res.ok) {
-        console.log(res);
-        alert("Accesso effettuato!");
-        navigate("/");
+        return res.json();
       } else {
         console.log(res);
         alert("Errore nell'accesso. Controlla le tue credenziali.");
       }
+    })
+    .then((data) => {
+      localStorage.setItem('token', data);
+      console.log(data)
+      alert("Accesso effettuato!");
+      navigate("/home");
     })
     .catch((err) => {
       alert("Si è verificato un errore! " + err);
@@ -40,8 +44,15 @@ export default function LogIn() {
 
   return (
     <>
-    <BlogNavBar></BlogNavBar>
-    <div style={{backgroundColor:"#F4C21B", padding:"30px"}}>
+    <div
+        style={{backgroundColor:"#F8F9FA",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center"
+      }}>
+    <img style={{width:"400px"}} src={logo} alt='logo'/>
+    </div>
+    <div style={{backgroundColor:"#F4C21B", padding:"30px", height:"71vh"}}>
         <h2 style={{margin:"0px"}}>Benvenuto su Nerd Blog:</h2>
         <hr></hr>
     <Form onSubmit={handleSubmit}>

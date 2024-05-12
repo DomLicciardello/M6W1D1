@@ -8,7 +8,7 @@ import { authMidd, generateJWT } from "../../auth/index.js"
 
 export const authorRoute = Router()
 
-authorRoute.get("/", async (req, res, next) => {
+authorRoute.get("/", authMidd, async (req, res, next) => {
   try {
     const page = req.query.page || 1
     let authors = await Author.find()
@@ -31,9 +31,11 @@ authorRoute.post("/login", async (req, res, next) => {
         foundUser.password);
       if (PasswordMatching) {
         const token = await generateJWT({
-          email: foundUser.email,
+          id: foundUser._id,
         });
-        res.send({ user: foundUser, token });
+        res.send({
+          user: foundUser,
+          token});
       } else {
         res.status(400).send("Password errata!")
       }
@@ -54,7 +56,7 @@ authorRoute.get("/me", authMidd, async (req, res, next) => {
   }
 })
 
-authorRoute.get("/:id", async (req, res, next) => {
+authorRoute.get("/:id", authMidd, async (req, res, next) => {
   try {
     let author = await Author.findById(req.params.id)
     res.send(author)
@@ -63,7 +65,7 @@ authorRoute.get("/:id", async (req, res, next) => {
   }
 })
 
-authorRoute.get("/:id/blogPosts", async (req, res, next) => {
+authorRoute.get("/:id/blogPosts", authMidd, async (req, res, next) => {
   try {
     let author = await Author.findById(req.params.id)
 
@@ -76,7 +78,7 @@ authorRoute.get("/:id/blogPosts", async (req, res, next) => {
   }
 })
 
-authorRoute.patch("/:id/avatar", multerAvatar, async (req, res, next) => {
+authorRoute.patch("/:id/avatar", authMidd, multerAvatar, async (req, res, next) => {
   try {
     let author = await Author.findByIdAndUpdate(
       req.params.id,
@@ -91,7 +93,7 @@ authorRoute.patch("/:id/avatar", multerAvatar, async (req, res, next) => {
   }
 })
 
-authorRoute.put("/:id", async (req, res, next) => {
+authorRoute.put("/:id", authMidd, async (req, res, next) => {
   try {
     let author = await Author.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -102,7 +104,7 @@ authorRoute.put("/:id", async (req, res, next) => {
   }
 })
 
-authorRoute.delete("/:id", async (req, res, next) => {
+authorRoute.delete("/:id", authMidd, async (req, res, next) => {
   try {
     await Author.deleteOne({
       _id: req.params.id,

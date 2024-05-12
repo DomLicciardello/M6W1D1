@@ -9,7 +9,7 @@ export const generateJWT = (payload) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "7 day" },
+      { expiresIn: "30d" },
       (err, token) => {
         if (err) {
           rej(err);
@@ -49,11 +49,11 @@ export const authMidd = async (req, res, next) => {
         delete decoded.iat;
         delete decoded.exp;
         const me = await Author.findOne({
-          ...decoded
+          ...decoded,
         });
         if (me) {
-          req.user = me
-          next()
+          req.user = me;
+          next();
         } else {
           res.status(401).send("Utente non trovato!");
         }

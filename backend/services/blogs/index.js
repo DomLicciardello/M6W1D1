@@ -6,7 +6,7 @@ import { authMidd } from "../../auth/index.js"
 
 export const blogRoute = Router()
 
-blogRoute.get("/", async (req, res, next) => {
+blogRoute.get("/", authMidd, async (req, res, next) => {
   try {
     const page = req.query.page || 1
     let blogs = await Blog.find(
@@ -30,7 +30,7 @@ blogRoute.get("/", async (req, res, next) => {
   }
 })
 
-blogRoute.get("/:id", async (req, res, next) => {
+blogRoute.get("/:id", authMidd, async (req, res, next) => {
   try {
     let blog = await Blog.findById(req.params.id)
     res.send(blog)
@@ -39,7 +39,7 @@ blogRoute.get("/:id", async (req, res, next) => {
   }
 })
 
-blogRoute.put("/:id", async (req, res, next) => {
+blogRoute.put("/:id", authMidd, async (req, res, next) => {
   try {
     let blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -50,7 +50,7 @@ blogRoute.put("/:id", async (req, res, next) => {
   }
 })
 
-blogRoute.patch("/:id/cover", multerCover, async (req, res, next) => {
+blogRoute.patch("/:id/cover", authMidd, multerCover, async (req, res, next) => {
   try {
     let blog = await Blog.findByIdAndUpdate(
       req.params.id,
@@ -65,7 +65,7 @@ blogRoute.patch("/:id/cover", multerCover, async (req, res, next) => {
   }
 })
 
-blogRoute.get("/:id/comments", async (req, res, next) => {
+blogRoute.get("/:id/comments", authMidd, async (req, res, next) => {
   try {
     let post = await Blog.findById(req.params.id).populate({
       path: "comments",
@@ -98,7 +98,7 @@ blogRoute.post("/:id/comments", authMidd, async (req, res, next) => {
   }
 })
 
-blogRoute.get("/:id/comments/:commentId", async (req, res, next) => {
+blogRoute.get("/:id/comments/:commentId", authMidd, async (req, res, next) => {
   try {
     let comment = await Comment.findById(req.params.commentId).populate({
       path: "author",
@@ -110,7 +110,7 @@ blogRoute.get("/:id/comments/:commentId", async (req, res, next) => {
   }
 })
 
-blogRoute.put("/:id/comments/:commentId", async (req, res, next) => {
+blogRoute.put("/:id/comments/:commentId", authMidd, async (req, res, next) => {
   try {
     let comment = await Comment.findByIdAndUpdate(
       req.params.commentId,
@@ -123,7 +123,7 @@ blogRoute.put("/:id/comments/:commentId", async (req, res, next) => {
   }
 })
 
-blogRoute.delete("/:id/comments/:commentId", async (req, res, next) => {
+blogRoute.delete("/:id/comments/:commentId", authMidd, async (req, res, next) => {
   try {
     await Blog.findByIdAndDelete(req.params.id)
     res.sendStatus(204)
@@ -132,7 +132,7 @@ blogRoute.delete("/:id/comments/:commentId", async (req, res, next) => {
   }
 })
 
-blogRoute.delete("/:id", async (req, res, next) => {
+blogRoute.delete("/:id", authMidd, async (req, res, next) => {
   try {
     await Blog.findByIdAndDelete(req.params.id)
     res.sendStatus(204)
