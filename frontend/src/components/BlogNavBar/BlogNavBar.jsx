@@ -4,8 +4,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/logo.png'
 import "./BlogNavBar.css"
+import Button from 'react-bootstrap/esm/Button';
+import { useNavigate } from 'react-router-dom';
 
 function BlogNavBar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    alert("Logout eseguito con successo! A presto!");
+    navigate("/");
+  };
+
   return (
     <Navbar expand="lg" id='nav-style' className="bg-body-tertiary">
       <Container fluid>
@@ -34,6 +44,20 @@ function BlogNavBar() {
             </Nav.Link>
           </Nav>
           <hr/>
+          <Nav
+          style={{
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+          }}>
+          <Button
+            onClick={handleLogout}
+            className="nav-button-style"
+            variant="outline-dark"
+            style={{width:"80px"}}>
+              Esci
+            </Button>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -33,9 +33,7 @@ authorRoute.post("/login", async (req, res, next) => {
         const token = await generateJWT({
           id: foundUser._id,
         });
-        res.send({
-          user: foundUser,
-          token});
+        res.send({token});
       } else {
         res.status(400).send("Password errata!")
       }

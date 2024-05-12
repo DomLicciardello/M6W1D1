@@ -32,8 +32,8 @@ export default function LogIn() {
       }
     })
     .then((data) => {
-      localStorage.setItem('token', data);
       console.log(data)
+      localStorage.setItem("token", data.token);
       alert("Accesso effettuato!");
       navigate("/home");
     })
