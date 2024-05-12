@@ -9,6 +9,7 @@ import Videogiochi from "./pages/Videogiochi"
 import LogIn from "./pages/LogIn"
 import SignIn from "./pages/SignIn"
 import CardDetails from "./pages/CardDetails";
+import NewPost from "./pages/NewPost";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/login" element={<LogIn/>}/>
         <Route exact path="/signin" element={<SignIn/>}/>
         <Route exact path="/post/:id" element={<CardDetails/>}/>
+        <Route exact path="/newpost" element={<NewPost/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
      </BrowserRouter>

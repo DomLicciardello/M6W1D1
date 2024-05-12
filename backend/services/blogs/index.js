@@ -8,7 +8,6 @@ export const blogRoute = Router()
 
 blogRoute.get("/", async (req, res, next) => {
   try {
-    //http://localhost:3001/blogs?title=tech&page=3
     const page = req.query.page || 1
     let blogs = await Blog.find(
       req.query.title ? { title: { $regex: req.query.title } } : {}
