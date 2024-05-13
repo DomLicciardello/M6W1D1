@@ -12,7 +12,7 @@ const blogsSchema = new Schema(
     },
     cover: {
       type: String,
-      required: true,
+      required: false,
     },
     content: {
       type: String,
@@ -21,17 +21,17 @@ const blogsSchema = new Schema(
     readTime: {
       value: {
         type: Number,
-        required: true
+        required: false
       },
       unit: {
         type: String,
-        required: true
+        required: false
       },
     },
     author: { type: Schema.Types.ObjectId, ref: "Author" },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
   },
-  { collection: "blogs" }
+  { collection: "blogs", timestamps: true }
 )
 
 export default model("Blogs", blogsSchema)

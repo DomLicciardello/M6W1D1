@@ -50,21 +50,6 @@ blogRoute.put("/:id", authMidd, async (req, res, next) => {
   }
 })
 
-blogRoute.patch("/:id/cover", authMidd, multerCover, async (req, res, next) => {
-  try {
-    let blog = await Blog.findByIdAndUpdate(
-      req.params.id,
-      { cover: req.file.path },
-      {
-        new: true,
-      }
-    )
-    res.send(blog)
-  } catch (error) {
-    next(error)
-  }
-})
-
 blogRoute.get("/:id/comments", authMidd, async (req, res, next) => {
   try {
     let post = await Blog.findById(req.params.id).populate({
@@ -141,11 +126,26 @@ blogRoute.delete("/:id", authMidd, async (req, res, next) => {
   }
 })
 
-blogRoute.post("/", authMidd, async (req, res, next) => {
+blogRoute.patch("/:id/cover", authMidd, multerCover, async (req, res, next) => {
   try {
-    let blog = await Blog.create({...req.body, author: req.user._id})
+    let blog = await Blog.findByIdAndUpdate(
+      req.params.id,
+      { cover: req.file.path },
+      {
+        new: true,
+      }
+    )
     res.send(blog)
   } catch (error) {
     next(error)
+  }
+})
+
+blogRoute.post("/", authMidd, async (req, res, next) => {
+  try {
+    let blog = await Blog.create({...req.body, author: req.user._id})
+    res.send(blog);
+  } catch (error) {
+    next(error);
   }
 })

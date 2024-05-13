@@ -48,9 +48,11 @@ export const authMidd = async (req, res, next) => {
       if (decoded.exp) {
         delete decoded.iat;
         delete decoded.exp;
+        //console.log("Token decodificato:", decoded);
         const me = await Author.findOne({
           ...decoded,
         });
+        //console.log("Utente trovato:", me);
         if (me) {
           req.user = me;
           next();

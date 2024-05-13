@@ -31,7 +31,7 @@ authorRoute.post("/login", async (req, res, next) => {
         foundUser.password);
       if (PasswordMatching) {
         const token = await generateJWT({
-          id: foundUser._id,
+          _id: foundUser._id,
         });
         res.send({token});
       } else {
