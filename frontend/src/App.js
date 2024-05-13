@@ -14,7 +14,7 @@ const isUserAuth = () => {
 };
 
 const PrivateRoute = ({ element, ...rest }) => {
-  return isUserAuth() ? element : <Navigate to="/login" />;
+  return isUserAuth() ? element : <Navigate to="/" />;
 };
 
 function App() {
