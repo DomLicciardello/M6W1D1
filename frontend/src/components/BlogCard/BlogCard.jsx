@@ -26,7 +26,7 @@ function BlogCard() {
   return (
     <>
     <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-3 mt-0">
-      {data.map((item) => (
+      {data.toReversed().map((item) => (
         <Col>
           <Link to={`/post/${item._id}`} key={item._id} style={{textDecoration:"none"}}>
           <Card

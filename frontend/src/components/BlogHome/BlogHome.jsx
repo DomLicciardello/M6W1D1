@@ -14,9 +14,10 @@ export default function BlogHome() {
     <Container fluid>
       <Row className='home-style'>
         <div className='d-flex justify-content-center'>
-        <Button variant="dark"
+        <Button
+        variant="dark"
         onClick={() => navigate("/newpost")}
-        style={{width:"180px"}}>
+        style={{width:"180px", marginBottom:"10px"}}>
           Nuovo articolo
         </Button>
         </div>
