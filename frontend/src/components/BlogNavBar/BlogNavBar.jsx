@@ -31,8 +31,8 @@ function BlogNavBar() {
             className="me-auto"
           >
             <Nav.Link href="http://localhost:3000/home" className="nav-link-style">
-                <ion-icon name="people-outline"></ion-icon>
-                <p>AUTORI</p>
+              <ion-icon name="home-outline"></ion-icon>
+              <p>HOME</p>
             </Nav.Link>
           </Nav>
           <hr/>
