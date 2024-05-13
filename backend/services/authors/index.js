@@ -8,7 +8,7 @@ import { authMidd, generateJWT } from "../../auth/index.js"
 
 export const authorRoute = Router()
 
-authorRoute.get("/", authMidd, async (req, res, next) => {
+authorRoute.get("/", async (req, res, next) => {
   try {
     const page = req.query.page || 1
     let authors = await Author.find()
@@ -45,7 +45,7 @@ authorRoute.post("/login", async (req, res, next) => {
   }
 });
 
-authorRoute.get("/me", authMidd, async (req, res, next) => {
+authorRoute.get("/me", async (req, res, next) => {
   try {
     let author = await Author.findById(req.user.id)
     res.send(author)
@@ -54,7 +54,7 @@ authorRoute.get("/me", authMidd, async (req, res, next) => {
   }
 })
 
-authorRoute.get("/:id", authMidd, async (req, res, next) => {
+authorRoute.get("/:id", async (req, res, next) => {
   try {
     let author = await Author.findById(req.params.id)
     res.send(author)
@@ -63,7 +63,7 @@ authorRoute.get("/:id", authMidd, async (req, res, next) => {
   }
 })
 
-authorRoute.get("/:id/blogPosts", authMidd, async (req, res, next) => {
+authorRoute.get("/:id/blogPosts", async (req, res, next) => {
   try {
     let author = await Author.findById(req.params.id)
 

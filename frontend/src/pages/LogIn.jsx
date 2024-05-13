@@ -32,7 +32,7 @@ export default function LogIn() {
       }
     })
     .then((data) => {
-      console.log(data)
+      //console.log(data)
       localStorage.setItem("token", data.token);
       alert("Accesso effettuato!");
       navigate("/home");

@@ -57,9 +57,9 @@ export default function NewPost() {
           </Form.Select>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formFile">
+        <Form.Group as={Col} controlId="formCover">
         <Form.Label>Copertina</Form.Label>
-        <Form.Control type="file" onChange={(e) => setCover(e.target.files[0])}/>
+        <Form.Control type="text" placeholder="URL immagine" onChange={(e) => setCover(e.target.value)}/>
       </Form.Group>
       </Row>
 
