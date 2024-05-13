@@ -10,10 +10,9 @@ function BlogCard() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/blogpost/', {
+        fetch('http://localhost:3001/blogs/', {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token')
           }
         })
         .then((response) => response.json())

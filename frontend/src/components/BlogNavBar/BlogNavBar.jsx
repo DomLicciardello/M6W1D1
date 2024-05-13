@@ -31,16 +31,8 @@ function BlogNavBar() {
             className="me-auto"
           >
             <Nav.Link href="http://localhost:3000/home" className="nav-link-style">
-                <ion-icon name="film-outline"></ion-icon>
-                <p>PROVA 1</p>
-            </Nav.Link>
-            <Nav.Link href="http://localhost:3000/home" className="nav-link-style">
-                <ion-icon name="book-outline"></ion-icon>
-                <p>PROVA 2</p>
-            </Nav.Link>
-            <Nav.Link href="http://localhost:3000/home" className="nav-link-style">
-                <ion-icon name="game-controller-outline"></ion-icon>
-                <p>PROVA 3</p>
+                <ion-icon name="people-outline"></ion-icon>
+                <p>AUTORI</p>
             </Nav.Link>
           </Nav>
           <hr/>

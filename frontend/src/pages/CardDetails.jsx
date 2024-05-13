@@ -11,7 +11,7 @@ export default function CardDetails() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      fetch(`http://localhost:3001/blogpost/${id}`)
+      fetch(`http://localhost:3001/blogs/${id}`)
       .then((response) => response.json())
       .then((data) => {
           setData(data);
