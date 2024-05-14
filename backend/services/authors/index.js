@@ -14,7 +14,7 @@ authorRoute.get("/googleLogin",
 authorRoute.get("/callback",
   passport.authenticate("google", {session: false}), (req, res, next) => {
     try {
-      res.redirect(`http://localhost:3000/authors/profile?accessToken=${req.user.accToken}`);
+      res.redirect(`http://localhost:3000/home`); //authors/profile?accessToken=${req.user.accToken}
     } catch (error) {
       next(error);
     }
