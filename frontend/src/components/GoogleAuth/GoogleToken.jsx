@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -18,4 +18,4 @@ export default function GoogleToken() {
         <h3>Login con Google avvenuto con successo!</h3>
     </div>
   )
-}
+} */
