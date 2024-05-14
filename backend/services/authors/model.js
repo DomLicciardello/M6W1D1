@@ -9,22 +9,24 @@ const authorSchema = new Schema(
         lastName: {
             type: String,
             required: true
-
         },
         email: {
             type: String,
             required: true
-
         },
         password: {
             type: String,
-            required: true
+            required: false
         },
         birthday: {
             type: String,
             required: false
         },
         avatar: {
+            type: String,
+            required: false
+        },
+        googleId: {
             type: String,
             required: false
         }

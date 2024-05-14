@@ -5,6 +5,8 @@ import cors from 'cors';
 import { authorRoute } from "./services/authors/index.js"
 import { blogRoute } from "./services/blogs/index.js"
 import { badRequestHandler, genericErrorHandler, notfoundHandler, unauthorizedHandler } from "./errorHandlers.js"
+import passport from "passport";
+import googleStrategy from "./auth/passport.js";
 
 config();
 const app = express()
@@ -13,6 +15,8 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 app.use(cors());
+
+passport.use("google", googleStrategy)
 
 app.use("/authors", authorRoute)
 app.use("/blogs", blogRoute)

@@ -5,20 +5,20 @@ import Blog from "../blogs/model.js"
 import multerAvatar from "../../config/multerAvatar.js"
 import "dotenv/config"
 import { authMidd, generateJWT } from "../../auth/index.js"
+import passport from "passport"
 
 export const authorRoute = Router()
 
-authorRoute.get("/", async (req, res, next) => {
-  try {
-    const page = req.query.page || 1
-    let authors = await Author.find()
-      .limit(20)
-      .skip(20 * (page - 1))
-    res.send(authors)
-  } catch (error) {
-    next(error)
-  }
-})
+authorRoute.get("/googleLogin",
+  passport.authenticate("google", {scope: ["profile", "email"]}));
+authorRoute.get("/callback",
+  passport.authenticate("google", {session: false}), (req, res, next) => {
+    try {
+      res.redirect(`http://localhost:3000/authors/profile?accessToken=${req.user.accToken}`);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 authorRoute.post("/login", async (req, res, next) => {
   try {
@@ -40,10 +40,22 @@ authorRoute.post("/login", async (req, res, next) => {
     } else {
       res.status(400).send("L'utente non esiste!")
     };
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
+
+authorRoute.get("/", async (req, res, next) => {
+  try {
+    const page = req.query.page || 1
+    let authors = await Author.find()
+      .limit(20)
+      .skip(20 * (page - 1))
+    res.send(authors)
+  } catch (error) {
+    next(error)
+  }
+})
 
 authorRoute.get("/me", async (req, res, next) => {
   try {

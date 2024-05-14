@@ -3,6 +3,7 @@ import BlogFooter from '../components/BlogFooter/BlogFooter'
 import logo from "../assets/logo.png"
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button';
+import GoogleAuth from '../components/GoogleAuth/GoogleAuth';
 
 export default function Welcome() {
     const navigate = useNavigate();
@@ -29,16 +30,17 @@ export default function Welcome() {
             onClick={() => navigate("/login")}
             className="nav-button-style"
             variant="outline-dark"
-            style={{width:"150px"}}>
+            style={{width:"200px"}}>
               Accedi
             </Button>
             <Button
             onClick={() => navigate("/signin")}
             className="nav-button-style"
             variant="outline-dark"
-            style={{width:"150px"}}>
+            style={{width:"200px"}}>
               Registrati
             </Button>
+            <GoogleAuth/>
         </div>
     </div>
     <BlogFooter></BlogFooter>
