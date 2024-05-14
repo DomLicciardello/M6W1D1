@@ -8,7 +8,6 @@ import SignIn from "./pages/SignIn"
 import CardDetails from "./pages/CardDetails";
 import NewPost from "./pages/NewPost";
 import Welcome from "./pages/Welcome";
-// import GoogleToken from "./components/GoogleAuth/GoogleToken";
 
 const isUserAuth = () => {
   return localStorage.getItem('token') !== null;
@@ -29,7 +28,6 @@ function App() {
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/post/:id" element={<PrivateRoute element={<CardDetails/>}/>}/>
         <Route path="/newpost" element={<PrivateRoute element={<NewPost/>}/>}/>
-        {/* <Route path="/googleLogin" element={<GoogleToken/>}/> */}
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
      </BrowserRouter>
